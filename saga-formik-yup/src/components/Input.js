@@ -1,15 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import * as Yup from 'yup';
 
-const Input = ({ type, placeholder }) => {
+const Input = ({type, placeholder}) => {
     return (
         <Container>
             <StyledInput
-                // placeholder={placeholder && placeholder}
-                // type={type ? type : "text"}
+                placeholder={placeholder && placeholder}
+                type={type ? type : "text"}
                 // required
-                // autocomplete="off"
+                autocomplete="off"
             />
             <Status />
         </Container>

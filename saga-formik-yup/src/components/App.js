@@ -1,17 +1,26 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import bgImage from './../assets/bg.png';
-import Sidebar from "./Sidebar";
 import Main from "./Main";
+import Login from "./Login";
+import {useDispatch} from "react-redux";
+import {getNews} from "../actions";
+
 function App() {
-  return (
-    <Container>
-      <Wrapper>
-        <Sidebar />
-        <Main />
-      </Wrapper>
-    </Container>
-  );
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getNews())
+    }, []);
+
+    return (
+        <Container>
+            <Wrapper>
+                <Login/>
+                <Main/>
+            </Wrapper>
+        </Container>
+    );
 }
 
 const Container = styled.div`
