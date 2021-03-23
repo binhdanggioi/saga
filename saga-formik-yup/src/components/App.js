@@ -1,22 +1,17 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import bgImage from './../assets/bg.png';
 import Main from "./Main";
 import Login from "./Login";
-import {useDispatch} from "react-redux";
-import {getNews} from "../actions";
+import Sidebar from "./Sidebar";
 
 function App() {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getNews())
-    }, []);
 
     return (
         <Container>
             <Wrapper>
-                <Login/>
+                {/*<Login />*/}
+                <Sidebar />
                 <Main/>
             </Wrapper>
         </Container>

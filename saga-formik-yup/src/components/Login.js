@@ -1,34 +1,37 @@
-import React from 'react';
+import React, {useState, useCallback} from 'react';
 import logoImg from './../assets/logo.svg';
 import styled from 'styled-components';
 import * as yup from 'yup';
-import { Formik} from 'formik';
+import {Formik} from 'formik';
+import {useSelector, useDispatch} from "react-redux";
+import {getUser, userLogin} from '../redux/toolkit/userSlice';
+import {handleUserLogin} from "../redux/sagas/handlers/users";
 
 function Login() {
 
-    const validateSchema=yup.object().shape({
+    const validateSchema = yup.object().shape({
         email: yup.string().email("please input correct format your email").required("please enter your email"),
         password: yup.string().required('please enter your password').min(6).max(18),
     });
+
+    const dispatch = useDispatch();
+
+    const handleOnSubmit = useCallback((values) => {
+        dispatch(userLogin(values));
+    });
+
+
     return (
         <Container>
             <Logo>
                 <img src={logoImg} alt="logo "/>
-                <h3>
-                    Login
-                </h3>
+                <h3>Login</h3>
             </Logo>
 
             <Formik
-                initialValues={{ email: '', password: ''}}
+                initialValues={{email: '', password: ''}}
                 validationSchema={validateSchema}
-                onSubmit={(values, { setSubmitting }) => {
-                    setTimeout(() => {
-                        // alert(JSON.stringify(values, null, 2));
-                        console.log(values);
-                        setSubmitting(false);
-                    }, 400);
-                }}>
+                onSubmit={handleOnSubmit}>
 
                 {({
                       values,
@@ -38,9 +41,8 @@ function Login() {
                       handleBlur,
                       handleSubmit,
                       isSubmitting,
-                      /* and other goodies */
                   }) => (
-                    <Form onSubmit={handleSubmit}>
+                    <Form>
                         <Input
                             type="email"
                             name="email"
@@ -49,7 +51,8 @@ function Login() {
                             onBlur={handleBlur}
                             value={values.email}
                         />
-                        {errors.email && touched.email && <div style={{color: 'red',fontSize: '10px',width: '70%'}}>{errors.email}</div>}
+                        {errors.email && touched.email &&
+                        <div style={{color: 'red', fontSize: '10px', width: '70%'}}>{errors.email}</div>}
 
                         <Input
                             type="password"
@@ -59,8 +62,9 @@ function Login() {
                             onBlur={handleBlur}
                             value={values.password}
                         />
-                        {errors.password && touched.password && <div style={{color: 'red',fontSize: '10px',width: '70%'}}>{errors.password}</div>}
-                        <button type="submit" disabled={isSubmitting}>
+                        {errors.password && touched.password &&
+                        <div style={{color: 'red', fontSize: '10px', width: '70%'}}>{errors.password}</div>}
+                        <button type="submit" onClick={handleSubmit}>
                             Login
                         </button>
                     </Form>
@@ -118,7 +122,7 @@ const Logo = styled.div`
     }
 `;
 
-const Form = styled.form`
+const Form = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
