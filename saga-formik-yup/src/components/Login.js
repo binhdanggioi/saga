@@ -1,11 +1,10 @@
-import React, {useState, useCallback} from 'react';
+import React, {useCallback} from 'react';
 import logoImg from './../assets/logo.svg';
 import styled from 'styled-components';
 import * as yup from 'yup';
 import {Formik} from 'formik';
-import {useSelector, useDispatch} from "react-redux";
-import {getUser, userLogin} from '../redux/toolkit/userSlice';
-import {handleUserLogin} from "../redux/sagas/handlers/users";
+import {useDispatch} from "react-redux";
+import {userLogin} from '../redux/toolkit/userSlice';
 
 function Login() {
 
@@ -24,7 +23,7 @@ function Login() {
     return (
         <Container>
             <Logo>
-                <img src={logoImg} alt="logo "/>
+                <img src={logoImg} alt="logo"/>
                 <h3>Login</h3>
             </Logo>
 

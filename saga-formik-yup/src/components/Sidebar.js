@@ -3,6 +3,7 @@ import logoImg from './../assets/logo.svg';
 import styled from 'styled-components';
 import * as yup from 'yup';
 import { Formik} from 'formik';
+import {Link} from "react-router-dom";
 
 function Sidebar() {
 
@@ -93,7 +94,7 @@ function Sidebar() {
                     Service
                 </Terms>
                 <h4>
-                    Already have an account? <a href="/">Sign In</a>
+                    Already have an account? <Link to="/sign-in">Sign In</Link>
                 </h4>
             </div>
         </Container>

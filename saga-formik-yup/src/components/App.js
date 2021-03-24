@@ -4,17 +4,20 @@ import bgImage from './../assets/bg.png';
 import Main from "./Main";
 import Login from "./Login";
 import Sidebar from "./Sidebar";
+import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 
 function App() {
 
     return (
-        <Container>
-            <Wrapper>
-                {/*<Login />*/}
-                <Sidebar />
-                <Main/>
-            </Wrapper>
-        </Container>
+        <Router>
+            <Container>
+                <Wrapper>
+                    <Login />
+                    {/*<Sidebar />*/}
+                    <Main/>
+                </Wrapper>
+            </Container>
+        </Router>
     );
 }
 
