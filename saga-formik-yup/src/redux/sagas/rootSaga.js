@@ -4,5 +4,6 @@ import { getUser,userLogin } from "../toolkit/userSlice";
 
 export function* rootSaga() {
     yield takeLatest(getUser.type, handleGetUser);
+
     yield takeLatest(userLogin.type, handleUserLogin);
 }

@@ -14,6 +14,7 @@ const userSlice = createSlice({
     initialState: {initialState},
     reducers: {
         getUser: () => {},
+
         setUser: (state, action) => {
             const userData = action.payload;
             return {
@@ -21,6 +22,7 @@ const userSlice = createSlice({
                 ...userData
             };
         },
+
         userLogin: (state, action) => {
             const userLogin = action.payload;
             return{
