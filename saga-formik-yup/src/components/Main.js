@@ -1,7 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { createBrowserHistory } from 'history';
+import { useHistory } from 'react-router-dom';
 
 const Main = () => {
+    const historyInstance = createBrowserHistory();
+
+    const history = useHistory();
+
     return (
         <Container>
             <h1>

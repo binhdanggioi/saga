@@ -22,15 +22,13 @@ export  function* handleUserLogin({payload}) {
         const resultPassword = dataLog.map(data => data.password);
         const resultEmail = dataLog.map(data => data.email);
 
-        const currentPassword = resultPassword.filter(rs => rs.password === password);
-        const currentEmail = resultEmail.filter(rs => rs.email === email);
+        const currentPassword = resultPassword.includes(password);
+        const currentEmail = resultEmail.includes(email);
 
         if(currentEmail && currentPassword){
-            console.log(111);
-            localStorage.setItem('tk', email);
-            localStorage.setItem('mk', password);
+            alert('login success');
         }else {
-            alert('error');
+            alert('email or password not correct');
         }
     }catch (error) {
         console.log(error);

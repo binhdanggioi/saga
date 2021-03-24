@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import bgImage from './../assets/bg.png';
 import Main from "./Main";
-import Login from "./Login";
-import Sidebar from "./Sidebar";
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import Login from "../login";
+import Register from '../register';
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
 function App() {
 
@@ -12,8 +12,8 @@ function App() {
         <Router>
             <Container>
                 <Wrapper>
-                    <Login />
-                    {/*<Sidebar />*/}
+                    <Route exact path="/login" component ={Login} />
+                    <Route path="/register" component ={Register} />
                     <Main/>
                 </Wrapper>
             </Container>
