@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import styled from 'styled-components';
 import bgImage from './../assets/bg.png';
 import Main from "./Main";
@@ -10,13 +10,15 @@ function App() {
 
     return (
         <Router>
-            <Container>
-                <Wrapper>
-                    <Route exact path="/login" component ={Login} />
-                    <Route path="/register" component ={Register} />
-                    <Main/>
-                </Wrapper>
-            </Container>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Container>
+                    <Wrapper>
+                        <Route exact path="/login" component ={Login} />
+                        <Route path="/register" component ={Register} />
+                        <Main/>
+                    </Wrapper>
+                </Container>
+            </Suspense>
         </Router>
     );
 }
@@ -38,6 +40,5 @@ const Wrapper = styled.div`
     height: 100%;
     display: flex;
 `;
-
 
 export default App;

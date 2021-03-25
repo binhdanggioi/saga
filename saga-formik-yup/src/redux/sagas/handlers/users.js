@@ -34,3 +34,21 @@ export  function* handleUserLogin({payload}) {
         console.log(error);
     }
 }
+
+export function* handleUserRegister({payload}) {
+    try{
+        const {fullname, email, password, c_password} = payload;
+        console.log("payload1: ",fullname, email, password, c_password);
+        const res = yield call(requestGetUser);
+        console.log("res: ",res);
+        if(payload){
+            res.data.push(payload);
+            console.log(res.data);
+            alert('register success')
+        }else {
+            alert('error');
+        }
+    }catch (error) {
+        console.log(error);
+    }
+}

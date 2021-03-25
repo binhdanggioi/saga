@@ -1,18 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { createBrowserHistory } from 'history';
-import { useHistory } from 'react-router-dom';
+import "../i18n";
+import {useTranslation} from "react-i18next";
 
 const Main = () => {
-    const historyInstance = createBrowserHistory();
 
-    const history = useHistory();
+    const {t} = useTranslation();
 
     return (
         <Container>
-            <h1>
-                Join The <br />
-                Team
+            <h1>{t("Join")} {t("The")} {t("Team")}
             </h1>
         </Container>
     );

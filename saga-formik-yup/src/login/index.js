@@ -6,8 +6,12 @@ import {Formik} from 'formik';
 import {useDispatch} from "react-redux";
 import {userLogin} from '../redux/toolkit/userSlice';
 import {Link} from "react-router-dom";
+import {useTranslation} from "react-i18next";
+import "../i18n";
 
 function Login() {
+
+    const {t} = useTranslation();
 
     const validateSchema = yup.object().shape({
         email: yup.string().email("please input correct format your email").required("please enter your email"),
@@ -24,7 +28,7 @@ function Login() {
             <Container>
                 <Logo>
                     <img src={logoImg} alt="logo"/>
-                    <h3>Login</h3>
+                    <h3>{t("Login")}</h3>
                 </Logo>
 
                 <Formik
@@ -64,7 +68,7 @@ function Login() {
                             {errors.password && touched.password &&
                             <div style={{color: 'red', fontSize: '10px', width: '70%'}}>{errors.password}</div>}
                             <button type="submit" onClick={handleSubmit}>
-                                Login
+                                {t("Login")}
                             </button>
                         </Form>
                     )}

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import logoImg from './../assets/logo.svg';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 import { Formik} from 'formik';
+import {useDispatch} from "react-redux";
+import {userRegister} from "../redux/toolkit/userSlice";
 
-function Sidebar() {
+function Register(callback, deps) {
 
     const validateSchema=yup.object().shape({
         fullname: yup.string().required('please input full name!'),
@@ -13,6 +15,13 @@ function Sidebar() {
         password: yup.string().required('please input password').min(6).max(18),
         c_password: yup.string().oneOf([yup.ref('password'),null],'Password not match'),
     });
+
+    const dispatch = useDispatch();
+
+    const handleOnSubmit = useCallback((values) => {
+        dispatch(userRegister(values))
+    }, deps);
+
     return (
             <Container>
                 <Logo>
@@ -23,14 +32,7 @@ function Sidebar() {
                 <Formik
                     initialValues={{ fullname: '', email: '', password: '', c_password: '' }}
                     validationSchema={validateSchema}
-                    onSubmit={(values, { setSubmitting }) => {
-                        setTimeout(() => {
-                            // alert(JSON.stringify(values, null, 2));
-                            console.log(values);
-                            setSubmitting(false);
-                        }, 400);
-                    }}>
-
+                    onSubmit={handleOnSubmit}>
                     {({
                           values,
                           errors,
@@ -39,7 +41,6 @@ function Sidebar() {
                           handleBlur,
                           handleSubmit,
                           isSubmitting,
-                          /* and other goodies */
                       }) => (
                         <Form onSubmit={handleSubmit}>
                             <Input
@@ -197,4 +198,4 @@ const Terms = styled.p`
   font-weight: 300;
 `;
 
-export default Sidebar;
+export default Register;
