@@ -4,6 +4,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 
 import { TRANSLATIONS_EN } from "./translations/en/translations";
 import { TRANSLATIONS_VI } from "./translations/vi/translations";
+import {TRANSLATIONS_ZH} from "./translations/zh/translations";
 
 i18n
     .use(LanguageDetector)
@@ -13,10 +14,13 @@ i18n
             en: {
                 translation: TRANSLATIONS_EN
             },
-            zh: {
+            vi: {
                 translation: TRANSLATIONS_VI
-            }
+            },
+            zh: {
+              translation: TRANSLATIONS_ZH
+            },
         }
     });
 
-i18n.changeLanguage("zh");
+i18n.changeLanguage("vi");

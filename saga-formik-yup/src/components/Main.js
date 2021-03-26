@@ -4,12 +4,11 @@ import "../i18n";
 import {useTranslation} from "react-i18next";
 
 const Main = () => {
-
     const {t} = useTranslation();
 
     return (
         <Container>
-            <h1>{t("Join")} {t("The")} {t("Team")}
+            <h1>{t("Join_The_Team")}
             </h1>
         </Container>
     );
@@ -30,5 +29,6 @@ const Container = styled.div`
     }
   }
 `;
+
 
 export default Main;

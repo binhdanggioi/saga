@@ -6,8 +6,12 @@ import * as yup from 'yup';
 import { Formik} from 'formik';
 import {useDispatch} from "react-redux";
 import {userRegister} from "../redux/toolkit/userSlice";
+import {useTranslation} from "react-i18next";
+import "../i18n";
 
-function Register(callback, deps) {
+function Register() {
+
+    const {t} = useTranslation();
 
     const validateSchema=yup.object().shape({
         fullname: yup.string().required('please input full name!'),
@@ -20,13 +24,13 @@ function Register(callback, deps) {
 
     const handleOnSubmit = useCallback((values) => {
         dispatch(userRegister(values))
-    }, deps);
+    });
 
     return (
             <Container>
                 <Logo>
                     <img src={logoImg} alt="logo "/>
-                    <h3>Register</h3>
+                    <h3>{t("Register")}</h3>
                 </Logo>
 
                 <Formik
@@ -47,7 +51,7 @@ function Register(callback, deps) {
                                 type="text"
                                 name="fullname"
                                 onChange={handleChange}
-                                placeholder="Full Name"
+                                placeholder={t("Fullname")}
                                 onBlur={handleBlur}
                                 value={values.fullname}
                             />
@@ -56,7 +60,7 @@ function Register(callback, deps) {
                                 type="email"
                                 name="email"
                                 onChange={handleChange}
-                                placeholder="Email"
+                                placeholder={t("Email")}
                                 onBlur={handleBlur}
                                 value={values.email}
                             />
@@ -66,7 +70,7 @@ function Register(callback, deps) {
                                 type="password"
                                 name="password"
                                 onChange={handleChange}
-                                placeholder="Password"
+                                placeholder={t("Password")}
                                 onBlur={handleBlur}
                                 value={values.password}
                             />
@@ -76,24 +80,23 @@ function Register(callback, deps) {
                                 type="password"
                                 name="c_password"
                                 onChange={handleChange}
-                                placeholder="Confirm Password"
+                                placeholder={t("ConfirmPass")}
                                 onBlur={handleBlur}
                                 value={values.c_password}
                             />
                             {errors.c_password && touched.c_password && <div style={{color: 'red',fontSize: '10px',width: '70%'}}>{errors.c_password}</div>}
                             <button type="submit" disabled={isSubmitting}>
-                                Register
+                                {t("Register")}
                             </button>
                         </Form>
                     )}
                 </Formik>
                 <div>
                     <Terms>
-                        By signing up, I agree to the Privacy Policy <br /> and Terms of
-                        Service
+                        {t("Policy")} <br /> {t("Service")}
                     </Terms>
                     <h4>
-                        Already have an account?<Link to="/login"> Login</Link>
+                        {t("account_register")}<Link to="/login"> {t("Login")}</Link>
                     </h4>
                 </div>
             </Container>

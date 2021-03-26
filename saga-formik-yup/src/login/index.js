@@ -50,7 +50,7 @@ function Login() {
                                 type="email"
                                 name="email"
                                 onChange={handleChange}
-                                placeholder="Email"
+                                placeholder={t("Email")}
                                 onBlur={handleBlur}
                                 value={values.email}
                             />
@@ -61,7 +61,7 @@ function Login() {
                                 type="password"
                                 name="password"
                                 onChange={handleChange}
-                                placeholder="Password"
+                                placeholder={t("Password")}
                                 onBlur={handleBlur}
                                 value={values.password}
                             />
@@ -75,11 +75,10 @@ function Login() {
                 </Formik>
                 <div>
                     <Terms>
-                        By signing up, I agree to the Privacy Policy <br /> and Terms of
-                        Service
+                        {t("Policy")} <br /> {t("Service")}
                     </Terms>
                     <h4>
-                        Do not have an account? <Link to='/register'>Register</Link>
+                        {t("account_login")} <Link to='/register'> {t("Register")}</Link>
                     </h4>
                 </div>
             </Container>
